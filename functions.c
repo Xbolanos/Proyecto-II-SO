@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <semaphore.h>
+#include <time.h>
 
 key_t key = 2000;
 key_t request = 2001; 
@@ -26,22 +27,14 @@ void replace_Element(int i, int j, int* array, int size){
     for(int x=0;x<size;x++){
         if(array[x]==i){
             array[x]=j;
+            printf("libera\n");
+            writeLog(i, 1, x/4);
         }
     }
 
 
 }
-void replace_Element_Between(int i,int* array, int init, int end){
-    printf("init:%d\n",init);
-    printf("end:%d\n",end );
-    for(int x=init;x<end+4;x+=4){
-            printf("array[x] %d\n", array[x]);
-            array[x]=0;
-        
-    }
 
-
-}
 
 int * search(int *r, int number){
     int * list=(int *) malloc(sizeof(int)*number);
@@ -110,4 +103,41 @@ int getIdOfSharedMemory(key_t key, int size){
         return id; 
     }
 }
+
+
+void writeLog (int PID, int action, int line) {
+    /*
+    param action: 
+    0 : asignacion 
+    1 : desasignacion 
+    2 : proceso que murio buscando 
+    3 : proceso que murio por viejito
+    */
+
+    FILE *log;
+
+    char filename[] = "bitacora.txt";
+    
+    log = fopen(filename, "a");
+    
+    if (log == NULL){
+     printf("ERROR: no se puede abrir el archivo - bitacora - \n"); 
+    }
+    
+    time_t timeP;
+    time ( &timeP );
+    struct tm * timeinfo = localtime ( &timeP );
+    if(action == 0){
+        fprintf(log, "Productor\n PID: %i; Tipo accion: %s; Hora: %i:%i:%i; Linea: %i\n", PID, "asignacion", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, line);      
+    }    
+    else if (action == 1){
+        fprintf(log, "Productor\n PID: %i; Tipo accion: %s; Hora: %i:%i:%i; Linea: %i\n", PID, "desasignacion", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, line);      
+    } 
+    else if (action == 2){
+        fprintf(log, "Productor\n PID: %i; Causa de muerte: %s; Hora: %i:%i:%i\n", PID, "no encontro memoria", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);      
+    } 
+    
+    fclose(log);
+}
+
 

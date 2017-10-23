@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     r = shmat(shmid, (void *)0, 0);
     int i = 0;
     printf("shmid: %d\n", shmidReq);
-   
+    remove("bitacora.txt");
    
     while(i < requestSize[0]*sizeof(float)){
         r[i] = 0.0;

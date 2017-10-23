@@ -1,0 +1,142 @@
+Productor
+ PID: 1; Tipo accion: asignacion; Hora: 21:47:24; Linea: 0
+Productor
+ PID: 1; Tipo accion: asignacion; Hora: 21:47:24; Linea: 1
+Productor
+ PID: 1; Tipo accion: asignacion; Hora: 21:47:24; Linea: 2
+Productor
+ PID: 1; Tipo accion: asignacion; Hora: 21:47:24; Linea: 3
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 4
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 5
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 6
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 7
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 8
+Productor
+ PID: 2; Tipo accion: asignacion; Hora: 21:47:29; Linea: 9
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 10
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 11
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 12
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 13
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 14
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 15
+Productor
+ PID: 3; Tipo accion: asignacion; Hora: 21:47:33; Linea: 16
+Productor
+ PID: 4; Tipo accion: asignacion; Hora: 21:47:36; Linea: 17
+Productor
+ PID: 4; Tipo accion: asignacion; Hora: 21:47:36; Linea: 18
+Productor
+ PID: 5; Causa de muerte: no encontro memoria; Hora: 21:48:12
+Productor
+ PID: 1; Tipo accion: desasignacion; Hora: 21:48:12; Linea: 0
+Productor
+ PID: 1; Tipo accion: desasignacion; Hora: 21:48:12; Linea: 1
+Productor
+ PID: 1; Tipo accion: desasignacion; Hora: 21:48:12; Linea: 2
+Productor
+ PID: 1; Tipo accion: desasignacion; Hora: 21:48:12; Linea: 3
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 4
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 5
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 6
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 7
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 8
+Productor
+ PID: 2; Tipo accion: desasignacion; Hora: 21:48:17; Linea: 9
+Productor
+ PID: 6; Tipo accion: asignacion; Hora: 21:48:18; Linea: 0
+Productor
+ PID: 6; Tipo accion: asignacion; Hora: 21:48:18; Linea: 1
+Productor
+ PID: 6; Tipo accion: asignacion; Hora: 21:48:18; Linea: 2
+Productor
+ PID: 6; Tipo accion: asignacion; Hora: 21:48:18; Linea: 3
+Productor
+ PID: 4; Tipo accion: desasignacion; Hora: 21:48:19; Linea: 17
+Productor
+ PID: 4; Tipo accion: desasignacion; Hora: 21:48:19; Linea: 18
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 10
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 11
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 12
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 13
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 14
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 15
+Productor
+ PID: 3; Tipo accion: desasignacion; Hora: 21:48:20; Linea: 16
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 4
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 5
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 6
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 7
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 8
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 9
+Productor
+ PID: 7; Tipo accion: asignacion; Hora: 21:48:23; Linea: 10
+Productor
+ PID: 8; Tipo accion: asignacion; Hora: 21:48:26; Linea: 11
+Productor
+ PID: 8; Tipo accion: asignacion; Hora: 21:48:26; Linea: 12
+Productor
+ PID: 9; Causa de muerte: no encontro memoria; Hora: 21:49:0
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 4
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 5
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 6
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 7
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 8
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 9
+Productor
+ PID: 7; Tipo accion: desasignacion; Hora: 21:49:0; Linea: 10
+Productor
+ PID: 10; Tipo accion: asignacion; Hora: 21:49:5; Linea: 4
+Productor
+ PID: 8; Tipo accion: desasignacion; Hora: 21:49:9; Linea: 11
+Productor
+ PID: 8; Tipo accion: desasignacion; Hora: 21:49:9; Linea: 12
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 5
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 6
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 7
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 8
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 9
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 10
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 11
+Productor
+ PID: 11; Tipo accion: asignacion; Hora: 21:49:10; Linea: 12

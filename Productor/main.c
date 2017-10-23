@@ -16,44 +16,39 @@ extern int * search(int *r, int number);
 extern int * search_seg(int *r, int number);
 int * finding(int * r, int number, int type);
 extern int getIdOfSharedMemory(key_t key, int size);
+extern void writeLog (int PID, int action, int line);
 
 void threadfunc(int *arguments[3]){
         int proc=arguments[1][0];
         int * space=arguments[0];
         int number=arguments[2];
         for(int i=0;i<number;i++){
-                int j=space[i];
-                r[j]=proc;
+            int j=space[i];
+            r[j]=proc;
+            printf("asigna\n");
+            writeLog(proc, 0, space[i]/4);
         }
-        //**AQUI VA A ESCRIBIR BITACORA
         print_shared_memory();
         sem_post(&semaphore);
         printf("\n\nSale Semaforo: %d \n\n",proc);
 
-        int i= 2 + rand() % (6+1 - 2);
+        int i= 30 + rand() % (60+1 - 30);
         sleep(i);
         printf("\n\nPide Semaforo: %d \n\n",proc);
         sem_wait(&semaphore);
         if(type==0){
             replace_Element(proc, 0, r,requestSize[0]*sizeof(int));
+            //en replace element es donde escribe en bitacora (: 
         }
         else{
-         
             for(int i=0;i<number;i++){
                 int j=space[i];
                 r[j]=0;
           }
         }
-        //**AQUI VA A ESCRIBIR BITACORA
         print_shared_memory();
         sem_post(&semaphore);
-        printf("\n\nSale Semaforo: %d \n\n",arguments[1][0]);
-        
-        
-
-       
-        
-    
+        printf("\n\nSale Semaforo: %d \n\n",arguments[1][0]);   
 }
 
 
@@ -61,14 +56,9 @@ void threadfunc(int *arguments[3]){
 int main(int argc, char *argv[])
 {
     
-
-    /*  create the segment: */
     int shmid = getIdOfSharedMemory(request, sizeof(int));
     requestSize = shmat(shmid, (void *)0, 0);
-
-
-
-    /* attach to the segment to get a pointer to it: */
+    
     printf("NO HAN MUERTO%d\n",requestSize[1] );
     int shmI = getIdOfSharedMemory(key, requestSize[0]*sizeof(int)); 
     r = shmat(shmI, (void *)0, 0);
@@ -111,12 +101,13 @@ void pagination(){
             if(space!=NULL)
                 pthread_create(mythread, NULL,threadfunc, arguments);
             else{ 
-                //AQUI VA BITACORA DE QUE MURIO
+                writeLog(idprocess, 2, 0); 
                 sem_post(&semaphore);
                 printf("\n\nSale Semaforo: %d \n\n",idprocess);
             }
             int waitb= 3 + rand() % (6+1 - 3);
-           
+           //int waitb= 30 + rand() % (60+1 - 30);
+            
             sleep(waitb);
         }
 

@@ -11,6 +11,7 @@
 
 sem_t semaphore;
 int type=0;
+int *process_shm; 
 
 extern int * search(int *r, int number);
 extern int * search_seg(int *r, int number);
@@ -37,6 +38,7 @@ void threadfunc(int *arguments[3]){
         printf("\n\nPide Semaforo: %d \n\n",proc);
         sem_wait(&semaphore);
         if(type==0){
+            process_shm[(proc*8)+4] = 1; // murio de viejito
             replace_Element(proc, 0, r,requestSize[0]*sizeof(int));
             //en replace element es donde escribe en bitacora (: 
         }
@@ -63,6 +65,12 @@ int main(int argc, char *argv[])
     int shmI = getIdOfSharedMemory(key, requestSize[0]*sizeof(int)); 
     r = shmat(shmI, (void *)0, 0);
     sem_init(&semaphore, 0, 1);
+
+    
+    int sizeProcess = (int) sizeof(int) * 20000;
+    int process_shm_id = getIdOfSharedMemory(processes_key, sizeProcess); 
+    process_shm = shmat(process_shm_id, NULL, 0);  
+
 
     if(atoi(argv[1])==0){
         type=0;
@@ -93,14 +101,18 @@ void pagination(){
             //int *space=(int *) malloc(sizeof(int)*number);
             printf("\n\nPide Semaforo: %d\n\n",idprocess);
             sem_wait(&semaphore);
+            process_shm[idprocess*8] = idprocess;
             int * space=finding(r,number,type);
             int * arguments[3];
             arguments[0]=space;
             arguments[1]=nprocess;
             arguments[2]=number;
-            if(space!=NULL)
+            if(space!=NULL){
+                process_shm[(idprocess*8)+4] = 0; // vivo (: 
                 pthread_create(mythread, NULL,threadfunc, arguments);
+            }
             else{ 
+                process_shm[(idprocess*8)+4] = 2; // murio porq no encontro :( 
                 writeLog(idprocess, 2, 0); 
                 sem_post(&semaphore);
                 printf("\n\nSale Semaforo: %d \n\n",idprocess);

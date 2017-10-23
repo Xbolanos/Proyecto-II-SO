@@ -11,6 +11,7 @@
 
 key_t key = 2000;
 key_t request = 2001; 
+key_t processes_key = 2002;
 int *requestSize;
 int mode;
 int * r;
@@ -111,7 +112,6 @@ void writeLog (int PID, int action, int line) {
     0 : asignacion 
     1 : desasignacion 
     2 : proceso que murio buscando 
-    3 : proceso que murio por viejito
     */
 
     FILE *log;

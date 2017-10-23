@@ -17,10 +17,11 @@ extern int * search_seg(int *r, int number);
 int * finding(int * r, int number, int type);
 extern int getIdOfSharedMemory(key_t key, int size);
 
-void threadfunc(int *arguments[2]) {
+void threadfunc(int *arguments[3]){
         int proc=arguments[1][0];
         int * space=arguments[0];
-        for(int i=0;i<sizeof(space[0]);i++){
+        int number=arguments[2];
+        for(int i=0;i<number;i++){
                 int j=space[i];
                 r[j]=proc;
         }
@@ -29,7 +30,7 @@ void threadfunc(int *arguments[2]) {
         sem_post(&semaphore);
         printf("\n\nSale Semaforo: %d \n\n",proc);
 
-        int i= 20 + rand() % (60+1 - 20);
+        int i= 2 + rand() % (6+1 - 2);
         sleep(i);
         printf("\n\nPide Semaforo: %d \n\n",proc);
         sem_wait(&semaphore);
@@ -38,7 +39,7 @@ void threadfunc(int *arguments[2]) {
         }
         else{
          
-            for(int i=0;i<sizeof(space[0]);i++){
+            for(int i=0;i<number;i++){
                 int j=space[i];
                 r[j]=0;
           }
@@ -98,15 +99,15 @@ void pagination(){
             int *nprocess[1];
             nprocess[0]=idprocess;
             int number= 1 + rand() % (10+1 - 1);
-            
-            int *space=(int *) malloc(sizeof(int)*number);
+            printf("Number:%d\n", number);
+            //int *space=(int *) malloc(sizeof(int)*number);
             printf("\n\nPide Semaforo: %d\n\n",idprocess);
             sem_wait(&semaphore);
-            space=finding(r,number,type);
-            printf("sale\n");
-            int * arguments[2];
+            int * space=finding(r,number,type);
+            int * arguments[3];
             arguments[0]=space;
             arguments[1]=nprocess;
+            arguments[2]=number;
             if(space!=NULL)
                 pthread_create(mythread, NULL,threadfunc, arguments);
             else{ 
@@ -114,7 +115,7 @@ void pagination(){
                 sem_post(&semaphore);
                 printf("\n\nSale Semaforo: %d \n\n",idprocess);
             }
-            int waitb= 30 + rand() % (60+1 - 30);
+            int waitb= 3 + rand() % (6+1 - 3);
            
             sleep(waitb);
         }
@@ -138,10 +139,10 @@ void segmentation(){
                 printf("\n\nPide Semaforo: %d\n\n",idprocess);
                 sem_wait(&semaphore);
                 space=finding(r,number,type);
-                printf("sale\n");
-                int * arguments[2];
+                int * arguments[3];
                 arguments[0]=space;
                 arguments[1]=nprocess;
+                arguments[2]=number;
                 if(space!=NULL){
                
                     pthread_create(mythread, NULL,threadfunc, arguments);
@@ -153,7 +154,7 @@ void segmentation(){
                 }
                 
             }
-            int waitb= 30 + rand() % (60+1 - 30);
+            int waitb= 3 + rand() % (6+1 - 3);
             sleep(waitb);
         }
 
@@ -166,6 +167,7 @@ int * finding(int * r, int number, int type){
        //AQUI VA BITACORA DE ESPERA
        if(type==0){
            n=search(r, number);
+           //print_list(n,number);
         }else{
             n=search_seg(r,number);
         }
@@ -174,11 +176,16 @@ int * finding(int * r, int number, int type){
            i++;
         }
         else{
+            printf("tamaño: %d\n", sizeof(n));
             return n; 
         }
     }
     return NULL;
 }
 
-
+void print_list(int* list,int number){
+    for(int i=0; i<number;i++){
+        printf("ELemento %d: %d\n",i, list[i]);
+    }
+}
 

@@ -45,15 +45,15 @@ void replace_Element_Between(int i,int* array, int init, int end){
 
 int * search(int *r, int number){
     int * list=(int *) malloc(sizeof(int)*number);
+    //printf("Number%d\n", number);
     int pos=0;
     for( int i = 0;i < requestSize[0]*sizeof(int);i=i+4){
-
-   
         if(pos==number){
             return list;
         }else{
-            if (r[i]==0){    
+            if (r[i]==0){  
                 list[pos]=i;
+                printf("I:%d\n", i);
                 pos++;
             }
         }

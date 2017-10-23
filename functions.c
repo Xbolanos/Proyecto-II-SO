@@ -28,8 +28,6 @@ void replace_Element(int i, int j, int* array, int size){
     for(int x=0;x<size;x++){
         if(array[x]==i){
             array[x]=j;
-            printf("libera\n");
-            writeLog(i, 1, x/4);
         }
     }
 
@@ -140,4 +138,39 @@ void writeLog (int PID, int action, int line) {
     fclose(log);
 }
 
+
+
+void writeLogS (int PID, int action, int segment, int line) {
+    /*
+    param action: 
+    0 : asignacion 
+    1 : desasignacion 
+    2 : proceso que murio buscando 
+    */
+
+    FILE *log;
+
+    char filename[] = "bitacora.txt";
+    
+    log = fopen(filename, "a");
+    
+    if (log == NULL){
+     printf("ERROR: no se puede abrir el archivo - bitacora - \n"); 
+    }
+    
+    time_t timeP;
+    time ( &timeP );
+    struct tm * timeinfo = localtime ( &timeP );
+    if(action == 0){
+        fprintf(log, "Productor\n PID: %i; Tipo accion: %s; Hora: %i:%i:%i; Segmento correspondiente: %i; Linea: %i\n", PID, "asignacion", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, segment, line);      
+    }    
+    else if (action == 1){
+        fprintf(log, "Productor\n PID: %i; Tipo accion: %s; Hora: %i:%i:%i; Segmento correspondiente: %i; Linea: %i\n", PID, "desasignacion", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, segment, line);      
+    } 
+    else if (action == 2){
+        fprintf(log, "Productor\n PID: %i; Causa de muerte: %s; Hora: %i:%i:%i\n", PID, "no encontro memoria", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);      
+    } 
+    
+    fclose(log);
+}
 

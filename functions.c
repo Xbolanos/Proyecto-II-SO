@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <semaphore.h>
 #include <time.h>
-
+#define SNAME "/semProcess"
 key_t key = 2000;
 key_t request = 2001; 
 key_t processes_key = 2002;

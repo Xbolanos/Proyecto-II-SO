@@ -8,10 +8,13 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <semaphore.h>
+#include <fcntl.h>
 
 sem_t semaphore;
+static sem_t * semP;
 int type=0;
 int *process_shm; 
+
 
 extern int * search(int *r, int number);
 extern int * search_seg(int *r, int number);
@@ -44,7 +47,9 @@ void threadfunc(int *arguments[3]){
         printf("\n\nPide Semaforo: %d \n\n",proc);
         sem_wait(&semaphore);
         if(type==0){
+            sem_wait(&semP);
             process_shm[(proc*8)+4] = 1; // murio de viejito
+            sem_post(&semP);
             replace_Element(proc, 0, r,requestSize[0]*sizeof(int));
             //en replace element es donde escribe en bitacora (: 
             for(int i=0;i<number;i++){
@@ -77,7 +82,8 @@ int main(int argc, char *argv[])
     int shmI = getIdOfSharedMemory(key, requestSize[0]*sizeof(int)); 
     r = shmat(shmI, (void *)0, 0);
     sem_init(&semaphore, 0, 1);
-
+    semP = sem_open(SNAME, O_CREAT, 0644, 3); /* Initial value is 3. */
+    sem_init(&semP, 0, 1);
     
     int sizeProcess = (int) sizeof(int) * 20000;
     int process_shm_id = getIdOfSharedMemory(processes_key, sizeProcess); 
@@ -113,8 +119,10 @@ void pagination(){
             //int *space=(int *) malloc(sizeof(int)*number);
             printf("\n\nPide Semaforo: %d\n\n",idprocess);
             sem_wait(&semaphore);
+            sem_wait(&semP); 
             process_shm[idprocess*8] = idprocess;
             process_shm[(idprocess*8)+4] = 3; // buscando (: 
+            sem_post(&semP); 
             int * space=finding(r,number,type);
             int * arguments[4];
             arguments[0]=space;
@@ -122,11 +130,15 @@ void pagination(){
             arguments[2]=number;
             arguments[4]=0; 
             if(space!=NULL){
+                sem_wait(&semP); 
                 process_shm[(idprocess*8)+4] = 0; // vivo (: 
+                sem_post(&semP); 
                 pthread_create(mythread, NULL,threadfunc, arguments);
             }
             else{ 
+                sem_wait(&semP);
                 process_shm[(idprocess*8)+4] = 2; // murio porq no encontro :( 
+                sem_post(&semP); 
                 writeLog(idprocess, 2, 0); 
                 sem_post(&semaphore);
                 printf("\n\nSale Semaforo: %d \n\n",idprocess);
@@ -157,8 +169,10 @@ void segmentation(){
                 int *space=(int *) malloc(sizeof(int)*number);
                 printf("\n\nPide Semaforo: %d\n\n",idprocess);
                 sem_wait(&semaphore);
+                sem_wait(&semP);
                 process_shm[idprocess*8] = idprocess;
                 process_shm[(idprocess*8)+4] = 3; // buscando (: 
+                sem_post(&semP);
                 space=finding(r,number,type);
                 
                 int * arguments[4];
@@ -168,12 +182,16 @@ void segmentation(){
                 arguments[2]=number;
                 arguments[3]=i; 
                 if(space!=NULL){
+                    sem_wait(&semP);
                     process_shm[(idprocess*8)+4] = 0; // vivo (: 
+                    sem_post(&semP);
                     pthread_create(mythread, NULL,threadfunc, arguments);
                     
                 }
                 else{ 
+                    sem_wait(&semP);
                     process_shm[(idprocess*8)+4] = 2; // murio porq no encontro :( 
+                    sem_post(&semP);
                     writeLogS(idprocess, 2, i, 0); 
                     sem_post(&semaphore);
                     printf("\n\nSale Semaforo: %d \n\n",idprocess);

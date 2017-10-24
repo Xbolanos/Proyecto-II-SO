@@ -7,7 +7,7 @@ productor: Productor/main.c
 	gcc -o productor Productor/main.c -pthread
 
 espia: Espia/main.c
-	gcc -o espia Espia/main.c
+	gcc -o espia Espia/main.c -pthread
 
 finalizador: Finalizador/main.c
 	gcc -o finalizador Finalizador/main.c

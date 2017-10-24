@@ -5,18 +5,21 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <fcntl.h>
+#include <semaphore.h>
+
 extern int getIdOfSharedMemory(key_t key, int size);
 extern void print_shared_memory();
-
+static sem_t * semP; 
 int main(int argc, char *argv[])
 {
     int *process_shm; 
     int sizeProcess = (int) sizeof(int) * 20000;
     int process_shm_id = getIdOfSharedMemory(processes_key, sizeProcess); 
     process_shm = shmat(process_shm_id, NULL, 0);   
-
+    semP = sem_open(SNAME, 0); /* Open a preexisting semaphore. */
     printf("jist in case\n");
-
+    sem_wait(&semP);
     for(int i = 8; i < 20000; i += 8) {
     	if (process_shm[i] != 0){
     		switch(process_shm[i + 4]) {
@@ -36,8 +39,8 @@ int main(int argc, char *argv[])
 	                break;
 	        }
     	}
-
-     } 
+     }
+     sem_post(&semP); 
     
     printf("okay (:\n");
 

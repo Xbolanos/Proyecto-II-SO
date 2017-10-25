@@ -235,7 +235,7 @@ int * finding(int * r, int number, int type){
        if(n==NULL){
            sleep(1);
            i++;
-           printf("Buscando\n")
+           printf("Buscando\n");
         }
         else{
          

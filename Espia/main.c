@@ -14,7 +14,10 @@ static sem_t * semP;
 static sem_t * semaphore;  
 int main(int argc, char *argv[])
 {
-	if(atoi(argv[1])==1){
+	if(argc < 2 || argc > 2){
+		printf("Ingrese como unico parametro 1 o 2, \n->1 para ver la memoria\n->2 para ver el estado de los procesos\n (:");
+	}
+	else if(atoi(argv[1])==1){
 		spyMemory();
 	}
 	else if(atoi(argv[1])==0){
@@ -33,18 +36,17 @@ void spyMemory(){
 
 	int shmI = getIdOfSharedMemory(key, requestSize[0]*sizeof(int)); 
 	r = shmat(shmI, (void *)0, 0);
-	printf("lol1\n");
+	
 	semaphore = sem_open(SMAIN, 0); /* Open a preexisting semaphore. */
-	printf("lol2\n");
 	int value;
 	sem_getvalue(semaphore, &value);
-    printf("%d\n",value);
+ 
     while(value == 0){
     	sem_getvalue(semaphore, &value);
     	sleep(1); 
     }
 	sem_wait(semaphore); 
-	printf("lol3\n");
+	
 
 	print_shared_memory(); 
 	sem_post(semaphore); 
@@ -60,11 +62,9 @@ void spyProcesses(){
   
     /*parte de semaforos*/
     semP = sem_open(SNAME, 0); /* Open a preexisting semaphore. */
-    printf("just in case\n");
-    
+
     int value;
 	sem_getvalue(semP, &value);
-    printf("%d\n",value);
     while(value == 0){
     	sem_getvalue(semP, &value);
     	sleep(1); 

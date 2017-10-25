@@ -9,6 +9,8 @@
 #include <semaphore.h>
 #include <time.h>
 #define SNAME "/semProcess"
+#define SMAIN "/semMain"
+
 key_t key = 2000;
 key_t request = 2001; 
 key_t processes_key = 2002;

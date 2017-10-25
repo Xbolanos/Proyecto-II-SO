@@ -10,16 +10,66 @@
 
 extern int getIdOfSharedMemory(key_t key, int size);
 extern void print_shared_memory();
-static sem_t * semP; 
+static sem_t * semP;
+static sem_t * semaphore;  
 int main(int argc, char *argv[])
 {
+	if(atoi(argv[1])==1){
+		spyMemory();
+	}
+	else if(atoi(argv[1])==0){
+		spyProcesses();
+	}
+	else{
+		printf("Ingrese como unico parametro 1 o 2, \n->1 para ver la memoria\n->2 para ver el estado de los procesos\n (:");
+	}
+   printf("okay (:\n");
+   return 0;
+}
+
+void spyMemory(){
+	int shmid = getIdOfSharedMemory(request, sizeof(int));
+	requestSize = shmat(shmid, (void *)0, 0);
+
+	int shmI = getIdOfSharedMemory(key, requestSize[0]*sizeof(int)); 
+	r = shmat(shmI, (void *)0, 0);
+	printf("lol1\n");
+	semaphore = sem_open(SMAIN, 0); /* Open a preexisting semaphore. */
+	printf("lol2\n");
+	int value;
+	sem_getvalue(semaphore, &value);
+    printf("%d\n",value);
+    while(value == 0){
+    	sem_getvalue(semaphore, &value);
+    	sleep(1); 
+    }
+	sem_wait(semaphore); 
+	printf("lol3\n");
+
+	print_shared_memory(); 
+	sem_post(semaphore); 
+
+}
+
+void spyProcesses(){
+	/*AQUI PIDE MEM COMPARTIDA DE LOS PROCESOS EN GENERAL*/
     int *process_shm; 
     int sizeProcess = (int) sizeof(int) * 20000;
-    int process_shm_id = getIdOfSharedMemory(processes_key, sizeProcess); 
-    process_shm = shmat(process_shm_id, NULL, 0);   
+	int process_shm_id = getIdOfSharedMemory(processes_key, sizeProcess); 
+	process_shm = shmat(process_shm_id, NULL, 0); 
+  
+    /*parte de semaforos*/
     semP = sem_open(SNAME, 0); /* Open a preexisting semaphore. */
-    printf("jist in case\n");
-    sem_wait(&semP);
+    printf("just in case\n");
+    
+    int value;
+	sem_getvalue(semP, &value);
+    printf("%d\n",value);
+    while(value == 0){
+    	sem_getvalue(semP, &value);
+    	sleep(1); 
+    }
+    sem_wait(semP);
     for(int i = 8; i < 20000; i += 8) {
     	if (process_shm[i] != 0){
     		switch(process_shm[i + 4]) {
@@ -40,9 +90,8 @@ int main(int argc, char *argv[])
 	        }
     	}
      }
-     sem_post(&semP); 
-    
-    printf("okay (:\n");
-
-    return 0;
+     sem_post(semP); 
 }
+
+    
+ 

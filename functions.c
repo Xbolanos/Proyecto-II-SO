@@ -45,7 +45,6 @@ int * search(int *r, int number){
         }else{
             if (r[i]==0){  
                 list[pos]=i;
-                printf("I:%d\n", i);
                 pos++;
             }
         }

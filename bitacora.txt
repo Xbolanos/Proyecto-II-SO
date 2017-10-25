@@ -1,36 +1,8 @@
 Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 1; Linea: 2
+ PID: 1; Tipo accion: asignacion; Hora: 11:13:25; Segmento correspondiente: -105461766; Linea: 0
 Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 2; Linea: 3
+ PID: 1; Tipo accion: asignacion; Hora: 11:13:25; Segmento correspondiente: -105461766; Linea: 1
 Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 2; Linea: 4
+ PID: 1; Tipo accion: asignacion; Hora: 11:13:25; Segmento correspondiente: -105461766; Linea: 2
 Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 2; Linea: 5
-Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 3; Linea: 6
-Productor
- PID: 1; Tipo accion: asignacion; Hora: 23:43:3; Segmento correspondiente: 3; Linea: 7
-Productor
- PID: 2; Tipo accion: asignacion; Hora: 23:43:6; Segmento correspondiente: 1; Linea: 10
-Productor
- PID: 2; Tipo accion: asignacion; Hora: 23:43:6; Segmento correspondiente: 1; Linea: 11
-Productor
- PID: 2; Tipo accion: asignacion; Hora: 23:43:6; Segmento correspondiente: 1; Linea: 12
-Productor
- PID: 2; Tipo accion: asignacion; Hora: 23:43:6; Segmento correspondiente: 2; Linea: 13
-Productor
- PID: 2; Tipo accion: asignacion; Hora: 23:43:6; Segmento correspondiente: 2; Linea: 14
-Productor
- PID: 3; Causa de muerte: no encontro memoria; Hora: 23:43:43
-Productor
- PID: 1; Tipo accion: desasignacion; Hora: 23:43:43; Segmento correspondiente: 1; Linea: 0
-Productor
- PID: 1; Tipo accion: desasignacion; Hora: 23:43:43; Segmento correspondiente: 1; Linea: 1
-Productor
- PID: 1; Tipo accion: desasignacion; Hora: 23:43:43; Segmento correspondiente: 1; Linea: 2
-Productor
- PID: 3; Tipo accion: asignacion; Hora: 23:43:43; Segmento correspondiente: 2; Linea: 0
-Productor
- PID: 3; Tipo accion: desasignacion; Hora: 23:43:43; Segmento correspondiente: 2; Linea: 15
-Productor
- PID: 3; Tipo accion: desasignacion; Hora: 23:43:43; Segmento correspondiente: 2; Linea: 16
+ PID: 1; Tipo accion: asignacion; Hora: 11:13:25; Segmento correspondiente: -105461766; Linea: 3

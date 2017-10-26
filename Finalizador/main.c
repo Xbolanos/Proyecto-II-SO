@@ -5,9 +5,12 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+
+#include <fcntl.h>
 extern int getIdOfSharedMemory(key_t key, int size);
 extern void print_shared_memory();
-
+static sem_t * smain;
+static sem_t * semP;
 int main(int argc, char *argv[])
 {
     printf("Inicio de Finalizador.\n");
@@ -28,6 +31,11 @@ int main(int argc, char *argv[])
     shmctl(shmidReq, IPC_RMID, NULL);
     shmctl(shmid, IPC_RMID, NULL);
     shmctl(proccess_shm_id, IPC_RMID, NULL);
+    smain = sem_open(SMAIN, O_CREAT, 0644, 1); 
+    semP = sem_open(SNAME, O_CREAT, 0644, 1); 
+    sem_destroy(smain); 
+    sem_destroy(semP); 
+
     printf("Fin del Finalizador.\n");
  
 

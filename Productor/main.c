@@ -7,8 +7,7 @@
 #include <sys/shm.h>
 #include <pthread.h>
 #include <unistd.h>
-#include <semaphore.h>
-#include <fcntl.h>
+
 
 static sem_t * smain;
 static sem_t * semP;
@@ -155,8 +154,8 @@ void pagination(){
                 sem_post(smain);
                 printf("\n\nSale Semaforo Principal: Proceso # %d \n\n",idprocess);
             }
-            int waitb= 3 + rand() % (6+1 - 3);
-           //int waitb= 30 + rand() % (60+1 - 30);
+            //int waitb= 3 + rand() % (6+1 - 3);
+           int waitb= 20 + rand() % (60+1 - 20);
             
             sleep(waitb);
         }
@@ -215,7 +214,7 @@ void segmentation(){
                 }
                 
             }
-            int waitb= 3 + rand() % (6+1 - 3);
+            int waitb= 20 + rand() % (60+1 - 20);
             sleep(waitb);
         }
 

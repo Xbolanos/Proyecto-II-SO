@@ -10,7 +10,7 @@ espia: Espia/main.c
 	gcc -o espia Espia/main.c -pthread
 
 finalizador: Finalizador/main.c
-	gcc -o finalizador Finalizador/main.c
+	gcc -o finalizador Finalizador/main.c -pthread
 
 clean:
 	rm -f *.o inicializador finalizador espia productor

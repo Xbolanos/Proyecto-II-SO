@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <semaphore.h>
+#include <fcntl.h>
 #include <time.h>
 #define SNAME "/semProcess"
 #define SMAIN "/semMain"
